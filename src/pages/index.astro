@@ -1,21 +1,30 @@
 ---
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import '../styles/global.css'
+import { headerHeight, footerHeight, bgColor, textColor } from '../scripts/constant';
 
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>首页</title>
-	</head>
-	<body>
-		<p>
-			<a href="/about">关于</a>
-			&nbsp;
-			<a href="/blog">blog</a>
-		</p>
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="generator" content={Astro.generator} />
+	<title>首页</title>
+	<style define:vars={{bgColor, textColor}}>
+		body {
+			background-color: var(--bgColor);
+			color: var(--textColor)
+		}
+	</style>
+</head>
+<body>
+	<Navigation height={headerHeight}></Navigation>
+	<div class="main">
 		<h1>我的个人站点终于开始搭建了 🎉🎉🎉</h1>
-	</body>
+	</div>
+	<Footer height={footerHeight}></Footer>
+</body>
 </html>

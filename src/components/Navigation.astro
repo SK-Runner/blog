@@ -1,0 +1,18 @@
+---
+const { height } = Astro.props;
+---
+<div class="navigation">
+	<a href="/">首页</a>
+	&nbsp;
+	<a href="/about">关于</a>
+	&nbsp;
+	<a href="/blog">blog</a>
+</div>
+
+
+<style define:vars={{height}}>
+	.navigation {
+		height: var(--height);
+		line-height: var(--height);
+	}
+</style>

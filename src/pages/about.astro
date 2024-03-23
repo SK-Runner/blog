@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css'
+import Navigation from "../components/Navigation.astro";
+import { headerHeight, footerHeight, bgColor, textColor } from '../scripts/constant';
 
 const title = '关于'
 const myself = {
@@ -13,8 +15,6 @@ const myself = {
 		advantage: ['博学多识', '温文尔雅']
 	}]
 }
-const bgColor= '#FFFBF5';
-const	textColor= '#222831';
 ---
 
 <html lang="en">
@@ -32,11 +32,7 @@ const	textColor= '#222831';
 	</style>
 </head>
 <body>
-<p>
-	<a href="/">首页</a>
-	&nbsp;
-	<a href="/blog">blog</a>
-</p>
+<Navigation height={headerHeight}></Navigation>
 <h1>关于我</h1>
 <p>
   大家好，我的名字是<b>苏昆</b>，{myself.age}岁，是一个{myself.occupation}，目前在{myself.local}生活和工作。欢迎大家来到西安～

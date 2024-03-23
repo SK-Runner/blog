@@ -1,5 +1,7 @@
 ---
-
+import '../styles/global.css'
+import Navigation from "../components/Navigation.astro";
+import { headerHeight, bgColor, textColor } from '../scripts/constant';
 ---
 
 <html lang="en">
@@ -9,13 +11,15 @@
 	<meta name="viewport" content="width=device-width" />
 	<meta name="generator" content={Astro.generator} />
 	<title>关于我</title>
+	<style define:vars={{bgColor, textColor}}>
+		body {
+			background-color: var(--bgColor);
+			color: var(--textColor)
+		}
+	</style>
 </head>
 <body>
-<p>
-	<a href="/">首页</a>
-	&nbsp;
-	<a href="/about">关于</a>
-</p>
+<Navigation height={headerHeight}></Navigation>
 <h1>Blog</h1>
 <ul>
 	<li>
