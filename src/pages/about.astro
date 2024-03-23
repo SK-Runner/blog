@@ -3,8 +3,21 @@ import '../styles/global.css'
 import Navigation from "../components/Navigation.astro";
 import { headerHeight, footerHeight, bgColor, textColor } from '../scripts/constant';
 
+type idolType = {
+	name: string;
+	advantage: string[];
+}
+type myselfType = {
+	name: string;
+	local: string;
+	occupation: string;
+	age: number;
+	hobby: string[];
+	idol: idolType[];
+}
+
 const title = '关于'
-const myself = {
+const myself: myselfType = {
 	name: 'sukun',
 	local: '中国-西安',
 	occupation: '前端开发者',
@@ -44,7 +57,7 @@ const myself = {
 	<span>{myself.hobby[2]}</span>
 </p>
 {
-	myself?.idol?.length ? <p>
+	myself.idol.length ? <p>
 		我的偶像是{myself.idol[0].name},
 		我希望自己未来会像{myself.idol[0].name}那样{
 			myself.idol[0].advantage.map(
