@@ -1,8 +1,23 @@
 ---
 import '../styles/global.css'
+import Navigation from "../components/Navigation.astro";
+import { headerHeight, footerHeight, bgColor, textColor } from '../scripts/constant';
+
+type idolType = {
+	name: string;
+	advantage: string[];
+}
+type myselfType = {
+	name: string;
+	local: string;
+	occupation: string;
+	age: number;
+	hobby: string[];
+	idol: idolType[];
+}
 
 const title = '关于'
-const myself = {
+const myself: myselfType = {
 	name: 'sukun',
 	local: '中国-西安',
 	occupation: '前端开发者',
@@ -13,8 +28,6 @@ const myself = {
 		advantage: ['博学多识', '温文尔雅']
 	}]
 }
-const bgColor= '#FFFBF5';
-const	textColor= '#222831';
 ---
 
 <html lang="en">
@@ -32,11 +45,7 @@ const	textColor= '#222831';
 	</style>
 </head>
 <body>
-<p>
-	<a href="/">首页</a>
-	&nbsp;
-	<a href="/blog">blog</a>
-</p>
+<Navigation height={headerHeight}></Navigation>
 <h1>关于我</h1>
 <p>
   大家好，我的名字是<b>苏昆</b>，{myself.age}岁，是一个{myself.occupation}，目前在{myself.local}生活和工作。欢迎大家来到西安～
@@ -48,7 +57,7 @@ const	textColor= '#222831';
 	<span>{myself.hobby[2]}</span>
 </p>
 {
-	myself?.idol?.length ? <p>
+	myself.idol.length ? <p>
 		我的偶像是{myself.idol[0].name},
 		我希望自己未来会像{myself.idol[0].name}那样{
 			myself.idol[0].advantage.map(

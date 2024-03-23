@@ -1,0 +1,14 @@
+---
+const { height } = Astro.props;
+---
+<footer class="footer">
+  <p>Context Me：******</p>
+</footer>
+
+<style define:vars={{height}}>
+    .footer {
+        height: var(--height);
+        width: 100%;
+        background-color: #C3ACD0;
+    }
+</style>
