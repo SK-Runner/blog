@@ -1,5 +1,20 @@
 ---
+import '../styles/global.css'
 
+const title = '关于'
+const myself = {
+	name: 'sukun',
+	local: '中国-西安',
+	occupation: '前端开发者',
+	age: 25,
+	hobby: ['代码', '足球', '听书'],
+	idol: [{
+		name: '樊登老师',
+		advantage: ['博学多识', '温文尔雅']
+	}]
+}
+const bgColor= '#FFFBF5';
+const	textColor= '#222831';
 ---
 
 <html lang="en">
@@ -8,7 +23,13 @@
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	<meta name="viewport" content="width=device-width" />
 	<meta name="generator" content={Astro.generator} />
-	<title>关于我</title>
+	<title>{title}</title>
+	<style define:vars={{bgColor, textColor}}>
+		body {
+			background-color: var(--bgColor);
+			color: var(--textColor)
+		}
+	</style>
 </head>
 <body>
 <p>
@@ -18,10 +39,22 @@
 </p>
 <h1>关于我</h1>
 <p>
-  大家好，我的名字是<b>苏昆</b>，我的个人站点终于开始搭建了 🎉🎉🎉
+  大家好，我的名字是<b>苏昆</b>，{myself.age}岁，是一个{myself.occupation}，目前在{myself.local}生活和工作。欢迎大家来到西安～
 </p>
 <p>
-  本次使用 astro 结合 netlify 搭建了个人站点，整个过程的体验感真的非常棒
+	我喜欢
+	<span>{myself.hobby[0]},</span>
+	<span>{myself.hobby[1]},</span>
+	<span>{myself.hobby[2]}</span>
 </p>
+{
+	myself?.idol?.length ? <p>
+		我的偶像是{myself.idol[0].name},
+		我希望自己未来会像{myself.idol[0].name}那样{
+			myself.idol[0].advantage.map(
+				(item, index) => index === myself.idol[0].advantage.length - 1 ? `${item}。` : `${item}、`
+			)}
+	</p> : null
+}
 </body>
 </html>
