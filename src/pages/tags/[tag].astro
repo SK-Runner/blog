@@ -1,0 +1,27 @@
+---
+import List from "../../components/List.astro";
+
+// 必须通过getStaticPaths给props传递数据
+// getStaticPaths的返回值将作为当前动态路由组件的props和params入参
+export async function getStaticPaths() {
+	// 获取所有tag
+	const allBlogList = await Astro.glob('../posts/*.md')
+	const allTag = [
+		...new Set(allBlogList.map(blog => blog.frontmatter.tag).flat())
+	]
+	// 获取每一中tag对应的blog list
+	return allTag.map(tag => {
+		const list = allBlogList.filter(
+			blog => blog.frontmatter.tag.includes(tag)
+		)
+		return {
+			params: { tag },
+			props: { list }
+		}
+	})
+}
+
+const { tag } = Astro.params;
+const { list } = Astro.props;
+---
+ <List title={`标签中包含${tag}的博客`} list={list}></List>

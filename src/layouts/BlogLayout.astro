@@ -1,0 +1,63 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+const { frontmatter } = Astro.props;
+---
+<BaseLayout title={frontmatter.title}>
+	<div class="detail">
+		<p><b>{frontmatter.title}</b></p>
+		<p>作者：{frontmatter.author}</p>
+		<p>
+			发布时间：{frontmatter.publishTime}
+		</p>
+		<div>
+			标签：
+			{frontmatter.tag.map(item => {
+				return (
+					<span class="tag">
+						<a href={`/tags/${item}`}>{item}</a>
+					</span>
+				)
+			})}
+		</div>
+	</div>
+	<div class="blog-body">
+		<slot />
+	</div>
+</BaseLayout>
+
+<style>
+	.detail {
+		text-align: left;
+		width: 50%;
+		margin: 0 auto;
+	}
+  .tag {
+		padding: 5px 5px;
+		margin-right: 8px;
+		background-color: #D4E7C5;
+		line-height: 18px;
+		border:  1px solid #BFD8AF;
+		cursor: pointer;
+  }
+	.tag > a {
+		color: inherit; /* 继承父元素的颜色 */
+		text-decoration: none; /* 去除下划线 */
+		background-color: transparent; /* 去除背景色 */
+		border: none; /* 去除边框 */
+		outline: none; /* 去除轮廓线（在某些浏览器中可能会显示） */
+	}
+
+	.tag > a:hover {
+		text-decoration: none; /* 鼠标悬停时也去除下划线 */
+		/* 其他你想要在鼠标悬停时应用的样式 */
+	}
+
+	.tag > a:visited {
+		color: inherit; /* 访问过的链接也继承父元素的颜色 */
+		/* 其他你想要在访问过的链接上应用的样式 */
+	}
+	.blog-body {
+		width: 50%;
+		margin: 0 auto;
+	}
+</style>
