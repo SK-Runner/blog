@@ -1,0 +1,33 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import '../styles/global.css'
+import { headerHeight, footerHeight, bgColor, textColor } from '../scripts/constant';
+
+const {title} = Astro.props
+---
+
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="generator" content={Astro.generator} />
+	<title>{title}</title>
+	<style define:vars={{bgColor, textColor}}>
+      body {
+          background-color: var(--bgColor);
+          color: var(--textColor)
+      }
+	</style>
+	<ViewTransitions />
+</head>
+<body>
+<Navigation height={headerHeight}></Navigation>
+<div class="main" transition:animate="fade">
+  <slot></slot>
+</div>
+<Footer height={footerHeight}></Footer>
+</body>
+</html>

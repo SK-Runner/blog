@@ -1,7 +1,5 @@
 ---
-import '../styles/global.css'
-import Navigation from "../components/Navigation.astro";
-import { headerHeight, footerHeight, bgColor, textColor } from '../scripts/constant';
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 type idolType = {
 	name: string;
@@ -30,40 +28,24 @@ const myself: myselfType = {
 }
 ---
 
-<html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-	<meta name="viewport" content="width=device-width" />
-	<meta name="generator" content={Astro.generator} />
-	<title>{title}</title>
-	<style define:vars={{bgColor, textColor}}>
-		body {
-			background-color: var(--bgColor);
-			color: var(--textColor)
-		}
-	</style>
-</head>
-<body>
-<Navigation height={headerHeight}></Navigation>
-<h1>关于我</h1>
-<p>
-  大家好，我的名字是<b>苏昆</b>，{myself.age}岁，是一个{myself.occupation}，目前在{myself.local}生活和工作。欢迎大家来到西安～
-</p>
-<p>
-	我喜欢
-	<span>{myself.hobby[0]},</span>
-	<span>{myself.hobby[1]},</span>
-	<span>{myself.hobby[2]}</span>
-</p>
-{
-	myself.idol.length ? <p>
-		我的偶像是{myself.idol[0].name},
-		我希望自己未来会像{myself.idol[0].name}那样{
+<BaseLayout title={title}>
+	<h1>关于我</h1>
+	<p>
+		大家好，我的名字是<b>苏昆</b>，{myself.age}岁，是一个{myself.occupation}，目前在{myself.local}生活和工作。欢迎大家来到西安～
+	</p>
+	<p>
+		我喜欢
+		<span>{myself.hobby[0]},</span>
+		<span>{myself.hobby[1]},</span>
+		<span>{myself.hobby[2]}</span>
+	</p>
+	{
+		myself.idol.length ? <p>
+			我的偶像是{myself.idol[0].name},
+			我希望自己未来会像{myself.idol[0].name}那样{
 			myself.idol[0].advantage.map(
 				(item, index) => index === myself.idol[0].advantage.length - 1 ? `${item}。` : `${item}、`
 			)}
-	</p> : null
-}
-</body>
-</html>
+		</p> : null
+	}
+</BaseLayout>
